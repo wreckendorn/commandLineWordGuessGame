@@ -1,0 +1,14 @@
+{
+  "name": "homework9wordguess",
+  "version": "1.0.0",
+  "description": "word guess game",
+  "main": "Index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "C Heckendorn",
+  "license": "ISC",
+  "dependencies": {
+    "inquirer": "^6.0.0"
+  }
+}
