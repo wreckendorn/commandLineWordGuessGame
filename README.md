@@ -8,5 +8,6 @@ To get started, follow these steps:
 1. clone the app
 1. Navigate to the folder in the command line
 1. Run npm install to install all necessary dependencies
+1. Type "node index.js" and press Enter and the game will begin.
 
 I am the sole contributor on this project and will maintain it. You can reach me at thechrisheckendorn@gmail.com for any questions.

@@ -1,4 +1,4 @@
-// **index.js**: The file containing the logic for the course of the game, which depends on `Word.js` and:
+// The file containing the logic for the course of the game, which depends on `Word.js` and:
 
 //   * Randomly selects a word and uses the `Word` constructor to store it
 
@@ -17,7 +17,10 @@ var word = "";
 var guesses = 0;
 var guessedLetters = "";
 
+//initialize the variables
 init();
+
+//intro the game to the user
 console.log("");
 console.log("");
 console.log("==============================================");
@@ -29,6 +32,8 @@ console.log("");
 console.log("I will select the last name of a director randomly for you.");
 console.log("You will then have 10 chances to guess all of the letters");
 console.log("");
+
+//ask the user if they're ready to play. if yes, runGame
 inquirer.prompt([
         {
                 type: "confirm",
@@ -41,9 +46,7 @@ inquirer.prompt([
         }
 });
 
-
-// runGame();
-
+//function for initializing the values
 function init(){
         director = directorBankArray[Math.floor(Math.random() * directorBankArray.length)];
         word = new Word(director);
@@ -51,13 +54,11 @@ function init(){
         guessedLetters = "";
 }
 
+//function for the gameplay. 
+//- tells user how many guesses they have left. 
+//- keeps track of all leters guessed. 
+//- prints out the letters of the word they have guessed and placeholders for the letters they have not guessed.
 function runGame(){
-
-     
-
-//checkes to see if they're out of guesses. If they are, game over. If they're not, move along.
-        
-//prints out word with underscores and letters guessed
         console.log("");
         console.log("");
         console.log("         You have " + guesses + " guesses left")
@@ -80,16 +81,21 @@ function runGame(){
         ]).then(function(user) {
                 var userLetter = user.getLetter;
                 guessedLetters += userLetter;
+                //- uses the truth method from the Word object to determine if they guessed correctly
                 word.truth(userLetter);
                 
+                //- if correct, updates the word to be displayed with the new letter they guessed added to it
+                //- once all letters have been guessed correctly, runs winGame function
                 if (word.print() === word.director) {
                         winGame(word.director);
                         }
 
+                //-once they run out of all guesses, runs endGame function
                 else if(guesses === 0){
                 endGame(word.director);
                 }
 
+                //- if not correct, asks them for the next letter
                 else {
                 runGame();
                 guesses = guesses - 1;
@@ -98,6 +104,7 @@ function runGame(){
 
 }
 
+//function for when the user runs out of guesses. tells them what the director was. calls the playAgain function.
 function endGame(director){
         console.log("");
         console.log("");
@@ -113,6 +120,7 @@ function endGame(director){
         playAgain();
 }
 
+//function for when the user guesses all o the letters correctly. Shows the full director's name with all letters showing. Calls the playAgain function
 function winGame(director){
         console.log("");
         console.log("");
@@ -129,6 +137,7 @@ function winGame(director){
         playAgain();
 }
 
+//function for asking the user if they want to play again. If yes, it calls the init and runGame functions. if no, game quits.
 function playAgain() {
         inquirer.prompt([
                 {
